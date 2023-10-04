@@ -13,7 +13,7 @@ public class Pais {
     private String formaGobierno;
     private String jefeEstado;
     private String ciudadCapital;
-    private String codigoPais;
+    private int codigoPais;
     private String idiomaPais;
 
     //constructor vacio
@@ -21,7 +21,7 @@ public class Pais {
     }
 
     //Constructor 
-    public Pais(String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, String codigoPais, String idiomaPais) {
+    public Pais(String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, int codigoPais, String idiomaPais) {
         this.nombre = nombre;
         this.continente = continente;
         this.region = region;
@@ -37,6 +37,14 @@ public class Pais {
         this.idiomaPais = idiomaPais;
     }
 
+    public Pais(int codigoPais, String nombre, String continente, int poblacion) {
+        this.nombre = nombre;
+        this.continente = continente;
+        this.codigoPais = codigoPais;
+        this.poblacion=poblacion;
+    }
+    
+    
  // Getters y Setters
     public String getNombre() {
         return nombre;
@@ -126,11 +134,11 @@ public class Pais {
         this.ciudadCapital = ciudadCapital;
     }
 
-    public String getCodigoPais() {
+    public int getCodigoPais() {
         return codigoPais;
     }
 
-    public void setCodigoPais(String codigoPais) {
+    public void setCodigoPais(int codigoPais) {
         this.codigoPais = codigoPais;
     }
 
@@ -146,7 +154,7 @@ public class Pais {
     public String toString() {
         return "Pais{" + "nombre=" + nombre + ", continente=" + continente + ", region=" + region + ", superficie=" + superficie + ", anoIndependencia=" + anoIndependencia + ", poblacion=" + poblacion + ", expectativaVida=" + expectativaVida + ", productoNB=" + productoNB + ", formaGobierno=" + formaGobierno + ", jefeEstado=" + jefeEstado + ", ciudadCapital=" + ciudadCapital + ", codigoPais=" + codigoPais + ", idiomaPais=" + idiomaPais + '}';
     }
-    
+
     
     
 }

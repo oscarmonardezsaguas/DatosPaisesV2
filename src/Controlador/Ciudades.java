@@ -2,13 +2,13 @@ package Controlador;
 
 public class Ciudades  extends Pais{
 
-    //atributos
+//atributos
 private String nombreCiudad;
 private String paisPertenece;
 private String distrito;
 private int poblacionCiudad;
 
-//Constructores
+    //Constructores
     public Ciudades(String nombreCiudad, String paisPertenece, String distrito, int poblacionCiudad) {
         this.nombreCiudad = nombreCiudad;
         this.paisPertenece = paisPertenece;
@@ -16,7 +16,7 @@ private int poblacionCiudad;
         this.poblacionCiudad = poblacionCiudad;
     }
 
-    public Ciudades(String nombreCiudad, String paisPertenece, String distrito, int poblacionCiudad, String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, String codigoPais, String idiomaPais) {
+    public Ciudades( String nombreCiudad, String paisPertenece, String distrito, int poblacionCiudad, String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, int codigoPais, String idiomaPais) {
         super(nombre, continente, region, superficie, anoIndependencia, poblacion, expectativaVida, productoNB, formaGobierno, jefeEstado, ciudadCapital, codigoPais, idiomaPais);
         this.nombreCiudad = nombreCiudad;
         this.paisPertenece = paisPertenece;

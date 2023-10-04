@@ -1,7 +1,12 @@
 package Vista;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import java.awt.event.ActionListener;
+
+
 import javax.swing.JOptionPane;
 
 public class Menu extends javax.swing.JFrame {
@@ -11,9 +16,10 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+       eventosmenu();       
     }
-
-        
+      
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -86,19 +92,9 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(jMnPaises);
 
         jMnCiudades.setText("Ciudades");
-        jMnCiudades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMnCiudadesActionPerformed(evt);
-            }
-        });
         jMenu3.add(jMnCiudades);
 
         jMnIdiomas.setText("Idioma");
-        jMnIdiomas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMnIdiomasActionPerformed(evt);
-            }
-        });
         jMenu3.add(jMnIdiomas);
 
         jMenuBar1.add(jMenu3);
@@ -120,11 +116,6 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMnPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnPaisesActionPerformed
-         VistaPais vistapais = new VistaPais();
-        vistapais.setVisible (true);       
-    }//GEN-LAST:event_jMnPaisesActionPerformed
-
     private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
            cerrar();
     }//GEN-LAST:event_jExitActionPerformed
@@ -135,23 +126,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jAccesoActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        cerrar();
-        
+            cerrar();
     }//GEN-LAST:event_formWindowClosing
-
-    private void jMnCiudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnCiudadesActionPerformed
-         VistaCiudad vistaciudad = new VistaCiudad();
-        vistaciudad.setVisible (true);               // TODO add your handling code here:
-    }//GEN-LAST:event_jMnCiudadesActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3ActionPerformed
 
-    private void jMnIdiomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnIdiomasActionPerformed
-        VistaIdioma vistaidioma = new VistaIdioma();
-        vistaidioma.setVisible (true);      
-    }//GEN-LAST:event_jMnIdiomasActionPerformed
+    private void jMnPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnPaisesActionPerformed
+          //VistaPais vistapais = new VistaPais();
+          //vistapais.setVisible (true);       
+    }//GEN-LAST:event_jMnPaisesActionPerformed
 
    // metodo para salir   del jframe menu
      public void cerrar(){
@@ -174,6 +159,46 @@ public class Menu extends javax.swing.JFrame {
             }
      }
      
+      
+        
+     
+     // evento opciones del menu
+    private void eventosmenu(){
+        // Evento de tipo listener del menu Paises
+        ActionListener oyentePais = new ActionListener() {
+      
+            @Override
+        public void actionPerformed(ActionEvent e) {
+            VistaPais vistapais = new VistaPais();
+            vistapais.setVisible (true);       
+            }
+        };     
+        jMnPaises.addActionListener(oyentePais);               
+              
+        
+        // Evento de tipo listener del menu Ciudades
+        ActionListener oyenteCiudad = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaCiudad vistaciudad = new VistaCiudad();
+                vistaciudad.setVisible (true);           
+            }
+        };      
+         jMnCiudades.addActionListener(oyenteCiudad);
+        
+          // Evento de tipo listener del menu Ciudades
+        ActionListener oyenteIdioma = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaIdioma vistaidioma = new VistaIdioma();
+                vistaidioma.setVisible (true);                
+            }
+        };      
+         jMnIdiomas.addActionListener(oyenteIdioma);
+    }
+    
+     
+             
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jAcceso;

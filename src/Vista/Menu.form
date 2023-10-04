@@ -79,17 +79,11 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ciudades"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMnCiudadesActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMnIdiomas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Idioma"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMnIdiomasActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

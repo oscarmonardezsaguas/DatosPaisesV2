@@ -13,7 +13,7 @@ public class Idioma extends Pais {
         this.porcentaje = porcentaje;
     }
 
-    public Idioma(String idioma, boolean oficial, Double porcentaje, String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, String codigoPais, String idiomaPais) {
+    public Idioma(String idioma, boolean oficial, Double porcentaje, String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, int codigoPais, String idiomaPais) {
         super(nombre, continente, region, superficie, anoIndependencia, poblacion, expectativaVida, productoNB, formaGobierno, jefeEstado, ciudadCapital, codigoPais, idiomaPais);
         this.idioma = idioma;
         this.oficial = oficial;
