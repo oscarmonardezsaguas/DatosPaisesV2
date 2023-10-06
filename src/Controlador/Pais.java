@@ -20,7 +20,7 @@ public class Pais {
     public Pais() {
     }
 
-    //Constructor 
+    //Constructor con todos los parametros
     public Pais(String nombre, String continente, String region, Double superficie, int anoIndependencia, int poblacion, int expectativaVida, Double productoNB, String formaGobierno, String jefeEstado, String ciudadCapital, int codigoPais, String idiomaPais) {
         this.nombre = nombre;
         this.continente = continente;
@@ -37,12 +37,14 @@ public class Pais {
         this.idiomaPais = idiomaPais;
     }
 
+      // Consrtuctor con 4 parametros
     public Pais(int codigoPais, String nombre, String continente, int poblacion) {
         this.nombre = nombre;
         this.continente = continente;
         this.codigoPais = codigoPais;
         this.poblacion=poblacion;
     }
+    
     
     
  // Getters y Setters

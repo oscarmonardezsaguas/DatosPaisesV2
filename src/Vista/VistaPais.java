@@ -15,35 +15,15 @@ public class VistaPais extends javax.swing.JFrame {
     private String nombrePais = "";
     private String continente = "";
     private int poblacion = 0;
+    
     ArrayList<Pais> lista = new ArrayList<>();
         
-    //private final PaisNegocio CONTROL;
-      
-    // CONSTRUCTOR
+     // CONSTRUCTOR
     public VistaPais() {
-        initComponents();
-        //this.CONTROL=new PaisNegocio();
+        initComponents();      
         eventosBotones();       
-               
-         tablaListado.addMouseListener(new MouseAdapter() {
-            DefaultTableModel model = new DefaultTableModel();
-
-            public void mouseClicked(MouseEvent e) {
-                int i = tablaListado.getSelectedRow();
-                codigo = Integer.parseInt((tablaListado.getValueAt(i, 0).toString()));
-                nombrePais = (tablaListado.getValueAt(i, 1).toString());
-                continente = (tablaListado.getValueAt(i, 2).toString());
-                poblacion = Integer.parseInt((tablaListado.getValueAt(i, 3).toString()));              
-                txtId.setText(String.valueOf(codigo));
-            }
-        });
-        
+        eventosMouse();             
     }
-
-    //private void listar(String texto){
-       // tablaListado.setModel(this.CONTROL.listar(texto));    
-    //
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,7 +70,6 @@ public class VistaPais extends javax.swing.JFrame {
 
             }
         ));
-        tablaListado.setColumnSelectionAllowed(true);
         tablaListado.setName("tabla"); // NOI18N
         tablaListado.setRowSelectionAllowed(false);
         tablaListado.setSurrendersFocusOnKeystroke(true);
@@ -225,10 +204,24 @@ public class VistaPais extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-   
+      
+    //metodo eventos mouse
+    private void eventosMouse(){
+      tablaListado.addMouseListener(new MouseAdapter() {
+            DefaultTableModel model = new DefaultTableModel();
+
+            public void mouseClicked(MouseEvent e) {
+                int i = tablaListado.getSelectedRow();
+                codigo = Integer.parseInt((tablaListado.getValueAt(i, 0).toString()));
+                nombrePais = (tablaListado.getValueAt(i, 1).toString());
+                continente = (tablaListado.getValueAt(i, 2).toString());
+                poblacion = Integer.parseInt((tablaListado.getValueAt(i, 3).toString()));              
+                txtId.setText(String.valueOf(codigo));
+            }
+        });
     
-       
-    
+    }
+           
     // metodo evento botones
     private void eventosBotones(){
          // evento action listener del boton buscar
@@ -250,12 +243,17 @@ public class VistaPais extends javax.swing.JFrame {
           };
           btnCrear.addActionListener(oyenteAgregar);
        
-      
-         
-        
+        // evento action listener del boton eliminar
+        ActionListener oyenteEliminar = new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 eliminarDartos();
+             }
+          };
+          btnEliminar.addActionListener(oyenteEliminar);         
     }
               
-    // Metodo crear datos 
+    // Metodo crear registros
     private void crearDatos(){
         // validar que codigo no este vacio
          if (txtCodigo.getText().length()==0 || txtCodigo.getText().length()>100){
@@ -295,13 +293,27 @@ public class VistaPais extends javax.swing.JFrame {
                 
                 // mostramos el registro en la tabla
                 mostrarDatos();
+                
                 txtCodigo.setText("");
                 txtNombre.setText("");                
                 txtPoblacion.setText("");
             }
-       }
+       }    
+    
+    // Metodo eliminar registro
+    private void eliminarDartos(){
+          if(JOptionPane.showConfirmDialog(this,"Deseas eliminar el registro ?",
+                  "Eliminar", JOptionPane.YES_NO_OPTION)==0){
+                for (int i = 0; i < lista.size(); i++) {
+                    if (codigo == (lista.get(i).getCodigoPais())) {
+                        lista.remove(i);
+                    }
+                }        
+                mostrarDatos();
+          }
+    }
        
-        //Metodo mostrar datos
+    //Metodo mostrar datos
      private void mostrarDatos() {
         String matriz[][] = new String[lista.size()][4];
         for (int i = 0; i < lista.size(); i++) {
@@ -310,10 +322,10 @@ public class VistaPais extends javax.swing.JFrame {
             matriz[i][2] = lista.get(i).getContinente();
             matriz[i][3] = String.valueOf(lista.get(i).getPoblacion());
         }
-       tablaListado.setModel(new javax.swing.table.DefaultTableModel(matriz, new String[]{"Código", "Nombre", "Continente", "Población"}));
+       tablaListado.setModel(new javax.swing.table.DefaultTableModel(matriz, new String[]{"Código", 
+           "Nombre", "Continente", "Población"}));
      }
-     
- 
+      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
