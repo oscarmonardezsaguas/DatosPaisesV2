@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.Pais;
+import Negocio.PaisNegocio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaPais extends javax.swing.JFrame {
+    private final PaisNegocio  CONTROL;
     private int codigo = 0;
     private String nombrePais = "";
     private String continente = "";
@@ -21,8 +23,9 @@ public class VistaPais extends javax.swing.JFrame {
      // CONSTRUCTOR
     public VistaPais() {
         initComponents();      
-        eventosBotones();       
-        eventosMouse();             
+        this.CONTROL=new PaisNegocio();
+        metodosBotones();       
+        metodosMouse();             
     }
 
     @SuppressWarnings("unchecked")
@@ -206,7 +209,7 @@ public class VistaPais extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
       
     //metodo eventos mouse
-    private void eventosMouse(){
+    private void metodosMouse(){
       tablaListado.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
 
@@ -223,7 +226,7 @@ public class VistaPais extends javax.swing.JFrame {
     }
            
     // metodo evento botones
-    private void eventosBotones(){
+    private void metodosBotones(){
          // evento action listener del boton buscar
          ActionListener oyenteBuscar=new ActionListener() {
              @Override
@@ -255,6 +258,8 @@ public class VistaPais extends javax.swing.JFrame {
               
     // Metodo crear registros
     private void crearDatos(){
+          String resp;
+        
         // validar que codigo no este vacio
          if (txtCodigo.getText().length()==0 || txtCodigo.getText().length()>100){
             JOptionPane.showMessageDialog(this, "Debes ingresar un código, es obligatorio.","Sistema", JOptionPane.WARNING_MESSAGE);
@@ -276,27 +281,34 @@ public class VistaPais extends javax.swing.JFrame {
             return;
         }
        
-          if(JOptionPane.showConfirmDialog(this,"Deseas guardar el registro ?",
+        if(JOptionPane.showConfirmDialog(this,"Deseas guardar el registro ?",
                   "Guardar", JOptionPane.YES_NO_OPTION)==0){
-               
+              
                 //leer los text de nuestro jframe
                 int codigo = Integer.parseInt(txtCodigo.getText());
                 String nombre = txtNombre.getText();
                 String continente = cbxContinente.getSelectedItem().toString();           
                 int poblacion = Integer.parseInt(txtPoblacion.getText());
                 
-                // instacioamos la clase pais y pasamos los parametros
-                Pais pais = new Pais(codigo, nombre, continente, poblacion);
+                resp=this.CONTROL.insertar(codigo, nombrePais, continente, poblacion);
+                if(resp.equals("OK")){
+                    
+                        JOptionPane.showMessageDialog(null,
+                         resp,"Sistema", JOptionPane.WARNING_MESSAGE);
+                      
+                        // instanciamos la clase pais y pasamos los parametros
+                        Pais pais = new Pais(codigo, nombre, continente, poblacion);
                 
-                // agregara alista el registro
-                lista.add(pais);
+                        // agregara alista el registro
+                        lista.add(pais);
                 
-                // mostramos el registro en la tabla
-                mostrarDatos();
+                        // mostramos el registro en la tabla
+                        mostrarDatos();
                 
-                txtCodigo.setText("");
-                txtNombre.setText("");                
-                txtPoblacion.setText("");
+                        txtCodigo.setText("");
+                        txtNombre.setText("");                
+                        txtPoblacion.setText("");
+                }
             }
        }    
     

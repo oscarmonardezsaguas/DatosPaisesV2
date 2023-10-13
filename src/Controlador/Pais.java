@@ -141,7 +141,12 @@ public class Pais {
     }
 
     public void setCodigoPais(int codigoPais) {
-        this.codigoPais = codigoPais;
+        if(codigoPais !=0){
+             this.codigoPais = codigoPais;
+        }else {
+            System.out.println("Error: El número no puede ser negativo.");
+        }
+       
     }
 
     public String getIdiomaPais() {
